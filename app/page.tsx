@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { AgentPrompt } from "./agent-prompt";
 
 const mono = "[font-family:var(--font-geist-mono)]";
@@ -216,15 +215,18 @@ export default function Home() {
                     </span>
                   </div>
 
-                  {/* mascot stage — pure white */}
+                  {/* mascot stage — pure white, looping idle video */}
                   <div className="relative aspect-square w-full bg-white">
-                    <Image
-                      src="/character.png"
-                      alt="Cognaitiv agent mascot"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 28rem"
-                      className="object-contain"
-                      preload
+                    <video
+                      src="/character.mp4"
+                      poster="/character.png"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                      aria-label="Cognaitiv agent mascot idle animation"
+                      className="absolute inset-0 h-full w-full -scale-x-100 object-contain"
                     />
                   </div>
 
