@@ -198,7 +198,7 @@ export default function Home() {
 
               {/* AGENT CARD — Claude Code-style CLI panel, white theme */}
               <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:ml-auto">
-                <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_24px_48px_-20px_rgba(0,0,0,0.18)]">
+                <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_24px_48px_-20px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out hover:scale-[1.02]">
                   {/* top bar — sparkle + working dir */}
                   <div className="flex items-center gap-2 border-b border-zinc-200 bg-white px-4 py-2.5">
                     <span
@@ -226,7 +226,7 @@ export default function Home() {
                       playsInline
                       preload="metadata"
                       aria-label="Cognaitiv agent mascot idle animation"
-                      className="absolute inset-0 h-full w-full -scale-x-100 object-contain"
+                      className="absolute inset-0 h-full w-full -scale-x-100 object-contain [filter:brightness(1.03)_contrast(1.05)_saturate(1.05)] [mask-image:radial-gradient(circle_at_center,black_75%,transparent_100%)]"
                     />
                   </div>
 
