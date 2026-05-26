@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { AgentPrompt } from "./agent-prompt";
+
 const mono = "[font-family:var(--font-geist-mono)]";
 
 const ACCENT = "#FF4A1B";
@@ -194,97 +197,44 @@ export default function Home() {
                 </dl>
               </div>
 
-              {/* AGENT CARD — character placeholder framed as a product artifact */}
+              {/* AGENT CARD — Claude Code-style CLI panel, white theme */}
               <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:ml-auto">
                 <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_24px_48px_-20px_rgba(0,0,0,0.18)]">
-                  {/* card header */}
-                  <div className="flex items-center justify-between border-b border-zinc-200 bg-zinc-50/60 px-4 py-2.5">
-                    <div className="flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                      </span>
-                      <span className={`${mono} text-[11px] text-zinc-700`}>
-                        agent.mascot
-                      </span>
-                      <span
-                        className={`${mono} rounded border border-zinc-200 bg-white px-1.5 py-0.5 text-[10px] text-zinc-500`}
-                      >
-                        running
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className="h-2 w-2 rounded-full bg-zinc-200" />
-                      <span className="h-2 w-2 rounded-full bg-zinc-200" />
-                      <span className="h-2 w-2 rounded-full bg-zinc-200" />
-                    </div>
-                  </div>
-
-                  {/* placeholder canvas — this is what gets swapped with /character.png */}
-                  <div className="relative aspect-square w-full bg-white">
-                    <div
+                  {/* top bar — sparkle + working dir */}
+                  <div className="flex items-center gap-2 border-b border-zinc-200 bg-white px-4 py-2.5">
+                    <span
+                      className="text-[13px] leading-none"
+                      style={{ color: ACCENT }}
                       aria-hidden="true"
-                      className="absolute inset-0 [background-image:linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] [background-size:32px_32px]"
+                    >
+                      ✻
+                    </span>
+                    <span
+                      className={`${mono} rounded border border-zinc-200 bg-white px-1.5 py-0.5 text-[11px] text-zinc-600`}
+                    >
+                      ~/cognaitiv/agents
+                    </span>
+                  </div>
+
+                  {/* mascot stage — pure white */}
+                  <div className="relative aspect-square w-full bg-white">
+                    <Image
+                      src="/character.png"
+                      alt="Cognaitiv agent mascot"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 28rem"
+                      className="object-contain"
+                      preload
                     />
-                    <div className="absolute inset-6 rounded-md border border-dashed border-zinc-300" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-zinc-400">
-                      <svg
-                        viewBox="0 0 48 48"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.25"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-12 w-12"
-                        aria-hidden="true"
-                      >
-                        <rect x="10" y="14" width="28" height="22" rx="5" />
-                        <circle cx="19" cy="24" r="1.8" fill="currentColor" stroke="none" />
-                        <circle cx="29" cy="24" r="1.8" fill="currentColor" stroke="none" />
-                        <path d="M20 30c1.3 1.3 2.6 2 4 2s2.7-.7 4-2" />
-                        <path d="M24 10v4" />
-                      </svg>
-                      <div
-                        className={`${mono} text-center text-[10px] tracking-tight text-zinc-400`}
-                      >
-                        awaiting render
-                      </div>
-                    </div>
-
-                    {/* corner markers */}
-                    <Corners />
                   </div>
 
-                  {/* card footer — generation metadata */}
+                  {/* prompt line */}
                   <div
-                    className={`${mono} grid grid-cols-3 gap-px border-t border-zinc-200 bg-zinc-100 text-[10px] text-zinc-600`}
+                    className={`${mono} flex items-center justify-between gap-3 border-t border-zinc-200 bg-white px-4 py-2.5 text-[11px]`}
                   >
-                    <div className="bg-white px-3 py-2">
-                      <div className="text-zinc-400">model</div>
-                      <div className="mt-0.5 text-zinc-900">gpt-image-2</div>
-                    </div>
-                    <div className="bg-white px-3 py-2">
-                      <div className="text-zinc-400">size</div>
-                      <div className="mt-0.5 text-zinc-900">1024×1024</div>
-                    </div>
-                    <div className="bg-white px-3 py-2">
-                      <div className="text-zinc-400">latency</div>
-                      <div className="mt-0.5 text-zinc-900">
-                        <span
-                          className="inline-block h-1.5 w-1.5 translate-y-[-1px] rounded-full"
-                          style={{ backgroundColor: ACCENT }}
-                        />{" "}
-                        1.8s
-                      </div>
-                    </div>
+                    <AgentPrompt />
+                    <span className="shrink-0 text-zinc-400">? for shortcuts</span>
                   </div>
-                </div>
-
-                <div
-                  className={`${mono} mt-3 flex items-center justify-between text-[10px] text-zinc-400`}
-                >
-                  <span>POST /v1/agents/mascot/render</span>
-                  <span>200 · 1.81s · 7.4kB</span>
                 </div>
               </div>
             </div>
@@ -640,14 +590,3 @@ function ArrowSmall({ className = "" }: { className?: string }) {
   );
 }
 
-function Corners() {
-  const base = "absolute h-3 w-3 border-zinc-300";
-  return (
-    <>
-      <span className={`${base} top-2 left-2 border-t border-l`} />
-      <span className={`${base} top-2 right-2 border-t border-r`} />
-      <span className={`${base} bottom-2 left-2 border-b border-l`} />
-      <span className={`${base} bottom-2 right-2 border-b border-r`} />
-    </>
-  );
-}
